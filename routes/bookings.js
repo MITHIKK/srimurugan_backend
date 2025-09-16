@@ -2,6 +2,25 @@ const express = require('express');
 const router = express.Router();
 const Booking = require('../models/Booking');
 
+// @desc    Create new booking
+// @route   POST /api/bookings
+// @access  Public
+router.post('/', async (req, res) => {
+  try {
+    const booking = await Booking.create(req.body);
+    res.status(201).json({
+      success: true,
+      data: booking
+    });
+  } catch (error) {
+    console.error('Create booking error:', error);
+    res.status(400).json({
+      success: false,
+      error: error.message
+    });
+  }
+});
+
 // @desc    Get all bookings
 // @route   GET /api/bookings
 // @access  Public (consider adding auth later)
