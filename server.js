@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors({
-  origin: 'https://srimuruganbooking.onrender.com',
+  origin: ['http://localhost:3000', 'https://srimuruganbooking.onrender.com'],
   credentials: true
 }));
 app.use(express.json());

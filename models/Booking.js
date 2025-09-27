@@ -8,16 +8,21 @@ const bookingSchema = new mongoose.Schema({
   },
   partyName: {
     type: String,
-    required: true
+    default: ''
   },
   partyPhone: {
     type: String,
-    required: true,
-    match: [/^\d{10}$/, 'Phone number must be 10 digits']
+    default: '',
+    validate: {
+      validator: function(v) {
+        return !v || /^\d{10}$/.test(v);
+      },
+      message: 'Phone number must be 10 digits'
+    }
   },
   from: {
     type: String,
-    required: true
+    default: ''
   },
   via: {
     type: String,
